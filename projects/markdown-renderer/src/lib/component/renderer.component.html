@@ -1,0 +1,47 @@
+<ng-container *ngFor="let item of tokenList; trackBy: trackByItems">
+  <ng-container [ngSwitch]="item.type">
+    <ng-container *ngSwitchCase="'paragraph'">
+      <md-paragraph
+        [text]="undefined"
+        [tokens]="getTokens(item)"
+      ></md-paragraph>
+    </ng-container>
+    <ng-container *ngSwitchCase="'heading'">
+      <md-heading [data]="item"></md-heading>
+    </ng-container>
+    <ng-container *ngSwitchCase="'em'">
+      <em *ngIf="hasTokens(item)">
+        <renderer [tokenList]="getTokens(item)"></renderer>
+      </em>
+    </ng-container>
+    <ng-container *ngSwitchCase="'hr'">
+      <md-hr></md-hr>
+    </ng-container>
+    <ng-container *ngSwitchCase="'blockquote'">
+      <md-blockquote [data]="item"></md-blockquote>
+    </ng-container>
+    <ng-container *ngSwitchCase="'text'">
+      <md-text [data]="item"></md-text>
+    </ng-container>
+    <ng-container *ngSwitchCase="'image'">
+      <md-image [data]="item"></md-image>
+    </ng-container>
+    <ng-container *ngSwitchCase="'codespan'">
+      <md-codespan [data]="item"></md-codespan>
+    </ng-container>
+    <ng-container *ngSwitchCase="'link'">
+      <md-link [data]="item"></md-link>
+    </ng-container>
+    <ng-container *ngSwitchCase="'strong'">
+      <md-strong [data]="item"></md-strong>
+    </ng-container>
+    <ng-container *ngSwitchCase="'list'">
+      <md-list [data]="item"></md-list>
+    </ng-container>
+    <!-- 空格就什么都不渲染 -->
+    <ng-container *ngSwitchCase="'space'"> </ng-container>
+    <ng-container *ngSwitchDefault>
+      没有设置的类型：{{ item.type }}
+    </ng-container>
+  </ng-container>
+</ng-container>
