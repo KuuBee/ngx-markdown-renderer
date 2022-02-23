@@ -1,12 +1,10 @@
-<ng-container *ngFor="let item of tokenList; trackBy: trackByItems">
+<!-- <ng-container *ngFor="let item of tokenList; trackBy: trackByItems">
   <ng-container [ngSwitch]="item.type">
     <ng-container *ngSwitchCase="'paragraph'">
-      <md-paragraph
-        [text]="undefined"
-        [tokens]="getTokens(item)"
-      ></md-paragraph>
+      <md-paragraph [text]="undefined" [tokens]="getTokens(item)"></md-paragraph>
     </ng-container>
     <ng-container *ngSwitchCase="'heading'">
+      <div>heading</div>
       <md-heading [data]="item"></md-heading>
     </ng-container>
     <ng-container *ngSwitchCase="'em'">
@@ -27,7 +25,10 @@
       <md-image [data]="item"></md-image>
     </ng-container>
     <ng-container *ngSwitchCase="'codespan'">
-      <md-codespan [data]="item"></md-codespan>
+      <md-codespan [data]="$any(item)"></md-codespan>
+    </ng-container>
+    <ng-container *ngSwitchCase="'code'">
+      <md-code [data]="$any(item)"></md-code>
     </ng-container>
     <ng-container *ngSwitchCase="'link'">
       <md-link [data]="item"></md-link>
@@ -38,10 +39,29 @@
     <ng-container *ngSwitchCase="'list'">
       <md-list [data]="item"></md-list>
     </ng-container>
-    <!-- 空格就什么都不渲染 -->
+    <ng-container *ngSwitchCase="'del'">
+      <md-del [data]="item"></md-del>
+    </ng-container>
     <ng-container *ngSwitchCase="'space'"> </ng-container>
     <ng-container *ngSwitchDefault>
       没有设置的类型：{{ item.type }}
     </ng-container>
   </ng-container>
-</ng-container>
+</ng-container> -->
+<div>type:{{token.type}}</div>
+<ng-template mdHeading></ng-template>
+<ng-template mdBlockquote></ng-template>
+<ng-template mdCode></ng-template>
+<ng-template mdCodespan></ng-template>
+<ng-template mdDel></ng-template>
+<ng-template mdHr></ng-template>
+<ng-template mdImage></ng-template>
+<ng-template mdLink></ng-template>
+<ng-template mdList></ng-template>
+<ng-template mdListItem></ng-template>
+<ng-template mdParagraph></ng-template>
+<ng-template mdStrong></ng-template>
+<ng-template mdText></ng-template>
+<ng-template mdEm></ng-template>
+<ng-template mdSpace></ng-template>
+<ng-template mdHTML></ng-template>

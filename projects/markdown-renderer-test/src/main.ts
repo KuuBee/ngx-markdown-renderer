@@ -10,3 +10,14 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+  class A{
+    a?:string
+  }
+  class B extends A{}
+
+  const a :{
+    aa:A
+  } = {
+    aa: new B()
+  }

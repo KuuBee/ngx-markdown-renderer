@@ -65,9 +65,12 @@
               "projects/markdown-renderer-test/src/assets"
             ],
             "styles": [
-              "projects/markdown-renderer-test/src/styles.scss"
+              "projects/markdown-renderer-test/src/styles.scss",
+              "projects/markdown-renderer-test/src/assets/prism.css"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/markdown-renderer-test/src/assets/prism.js"
+            ]
           },
           "configurations": {
             "production": {

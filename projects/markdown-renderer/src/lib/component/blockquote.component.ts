@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
 import { marked } from 'marked';
 
 const conetnt = `<ng-container *ngIf="tokens.length; else content">
-  <renderer [tokenList]="tokens"></renderer>
+  <renderer *ngFor="let item of tokens" [token]="item"></renderer>
 </ng-container>
 <ng-template #content>
 {{ text }}
@@ -20,16 +20,11 @@ const conetnt = `<ng-container *ngIf="tokens.length; else content">
   template: `<blockquote>${conetnt}</blockquote>`,
 })
 export class BlockquoteComponent {
-  @Input() data!: marked.Token;
-  protected get _data() {
-    if (this.data.type !== 'blockquote')
-      throw TypeError('error blockquote type');
-    return this.data;
-  }
+  @Input() data!: marked.Tokens.Blockquote;
   get text() {
-    return this._data.text;
+    return this.data.text;
   }
   get tokens() {
-    return this._data.tokens;
+    return this.data.tokens;
   }
 }

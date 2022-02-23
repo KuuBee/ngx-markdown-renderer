@@ -27,27 +27,23 @@ import { marked } from 'marked';
     </ng-template>`,
 })
 export class ListCompoent {
-  @Input() data!: marked.Token;
-  protected get _data() {
-    if (this.data.type !== 'list') throw TypeError('error list type');
-    return this.data;
-  }
+  @Input() data!: marked.Tokens.List;
   // 是有序列表还是无序列表
   get ordered() {
-    return this._data.ordered;
+    return this.data.ordered;
   }
   // 有序列表起始数字
   get start() {
-    const start = this._data.start;
+    const start = this.data.start;
     if (typeof start === 'string') return NaN;
     return start;
   }
   // TODO 不知道这个属性干啥的
   get loose() {
-    return this._data.loose;
+    return this.data.loose;
   }
   // 列表项
   get items() {
-    return this._data.items;
+    return this.data.items;
   }
 }

@@ -14,19 +14,15 @@ import { marked } from 'marked';
   template: `<img [src]="href" [alt]="text" [title]="title" />`,
 })
 export class ImageComponent {
-  @Input() data!: marked.Token;
-  protected get _data() {
-    if (this.data.type !== 'image') throw TypeError('error image type');
-    return this.data;
-  }
+  @Input() data!: marked.Tokens.Image;
 
   get title() {
-    return this._data.title ?? '';
+    return this.data.title ?? '';
   }
   get href() {
-    return this._data.href;
+    return this.data.href;
   }
   get text() {
-    return this._data.text;
+    return this.data.text;
   }
 }

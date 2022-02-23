@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 import { marked } from 'marked';
 
 const conetnt = `<ng-container *ngIf="tokens.length; else content">
-  <renderer [tokenList]="tokens"></renderer>
+  <renderer *ngFor="let item of tokens" [token]="item"></renderer>  
 </ng-container>
 <ng-template #content>
 {{ text }}
@@ -19,6 +19,11 @@ const conetnt = `<ng-container *ngIf="tokens.length; else content">
   template: `<p>${conetnt}</p>`,
 })
 export class ParagraphComponent {
-  @Input() text?: string;
-  @Input() tokens: marked.Token[] = [];
+  @Input() data!: marked.Tokens.Paragraph;
+  get text() {
+    return this.data.text;
+  }
+  get tokens() {
+    return this.data.tokens;
+  }
 }

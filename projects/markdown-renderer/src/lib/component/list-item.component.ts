@@ -17,7 +17,7 @@ import { marked } from 'marked';
         <input [checked]="checked" type="checkbox" />
       </ng-container>
       <ng-container *ngIf="tokens.length; else content">
-        <renderer [tokenList]="tokens"></renderer>
+        <renderer *ngFor="let item of tokens" [token]="item"></renderer>
       </ng-container>
       <ng-template #content>{{ text }}</ng-template>
     </li>

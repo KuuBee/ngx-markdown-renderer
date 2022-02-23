@@ -1,3 +1,1 @@
-<div>
-  <renderer [tokenList]="tokenList"></renderer>
-</div>
+<renderer *ngFor="let item of tokenList" [token]="item"></renderer>

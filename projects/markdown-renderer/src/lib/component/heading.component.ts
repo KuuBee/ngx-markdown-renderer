@@ -3,17 +3,31 @@
  * @Author: KuuBee
  * @Date: 2021-11-12 15:10:44
  * @LastEditors: KuuBee
- * @LastEditTime: 2021-11-16 11:36:12
+ * @LastEditTime: 2021-12-27 14:48:50
  */
-import { Component, Input } from '@angular/core';
+import { Component, Injectable, Input } from '@angular/core';
 import { marked } from 'marked';
 
 const conetnt = `<ng-container *ngIf="tokens.length; else content">
-<renderer [tokenList]="tokens"></renderer>
+<renderer *ngFor="let item of tokens" [token]="item"></renderer>
 </ng-container>
 <ng-template #content>
 {{ text }}
 </ng-template>`;
+
+@Injectable()
+export abstract class AbstractHeadingComponent {
+  @Input() data!: marked.Tokens.Heading;
+  get depth() {
+    return this.data.depth;
+  }
+  get text() {
+    return this.data.text;
+  }
+  get tokens() {
+    return this.data.tokens;
+  }
+}
 
 @Component({
   selector: 'md-heading',
@@ -27,19 +41,15 @@ const conetnt = `<ng-container *ngIf="tokens.length; else content">
   </ng-container>`,
   styles: [],
 })
-export class HeadingComponent {
-  @Input() data!: marked.Token;
-  private get _data() {
-    if (this.data.type !== 'heading') throw TypeError('Error heading type!');
-    return this.data;
-  }
-  get depth() {
-    return this._data.depth;
-  }
-  get text() {
-    return this._data.text;
-  }
-  get tokens() {
-    return this._data.tokens;
-  }
+export class HeadingComponent extends AbstractHeadingComponent {
+  // @Input() data!: marked.Tokens.Heading;
+  // get depth() {
+  //   return this.data.depth;
+  // }
+  // get text() {
+  //   return this.data.text;
+  // }
+  // get tokens() {
+  //   return this.data.tokens;
+  // }
 }
