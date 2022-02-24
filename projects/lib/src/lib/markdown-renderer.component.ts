@@ -9,8 +9,8 @@ import { MarkdownRendererService } from './markdown-renderer.service';
 })
 export class MarkdownRendererComponent implements OnInit {
   constructor(private _mrService: MarkdownRendererService) { }
-  tokenList: marked.Token[] = [];
+  tokens: marked.Token[] = [];
   ngOnInit(): void {
-    this.tokenList = this._mrService.init();
+    this.tokens = this._mrService.init();
   }
 }

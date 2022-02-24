@@ -15,19 +15,6 @@ const conetnt = `<ng-container *ngIf="tokens.length; else content">
 {{ text }}
 </ng-template>`;
 
-@Injectable()
-export abstract class AbstractHeadingComponent {
-  @Input() data!: marked.Tokens.Heading;
-  get depth() {
-    return this.data.depth;
-  }
-  get text() {
-    return this.data.text;
-  }
-  get tokens() {
-    return this.data.tokens;
-  }
-}
 
 @Component({
   selector: 'md-heading',
@@ -41,15 +28,15 @@ export abstract class AbstractHeadingComponent {
   </ng-container>`,
   styles: [],
 })
-export class HeadingComponent extends AbstractHeadingComponent {
-  // @Input() data!: marked.Tokens.Heading;
-  // get depth() {
-  //   return this.data.depth;
-  // }
-  // get text() {
-  //   return this.data.text;
-  // }
-  // get tokens() {
-  //   return this.data.tokens;
-  // }
+export class HeadingComponent {
+  @Input() data!: marked.Tokens.Heading;
+  get depth() {
+    return this.data.depth;
+  }
+  get text() {
+    return this.data.text;
+  }
+  get tokens() {
+    return this.data.tokens;
+  }
 }

@@ -22,8 +22,10 @@ import { ListCompoent } from "./component/list.component";
 import { ParagraphComponent } from "./component/paragraph.component";
 import { SpaceComponent } from "./component/space.component";
 import { StrongComponent } from "./component/strong.component";
+import { TableComponent } from "./component/table.component";
 import { TextComponent } from "./component/text.component";
 import { BlockquoteDirective } from "./directive/blockquote.directive";
+import { BrDirective } from "./directive/br.directive";
 import { CodeDirective } from "./directive/code.directive";
 import { CodespanDirective } from "./directive/codespan.directive";
 import { DelDirective } from "./directive/del.directive";
@@ -38,6 +40,7 @@ import { ListDirective } from "./directive/list.directive";
 import { ParagraphDirective } from "./directive/paragraph.directive";
 import { SpaceDirective } from "./directive/space.directive";
 import { StrongDirective } from "./directive/strong.directive";
+import { TableDirective } from "./directive/table.directive";
 import { TextDirective } from "./directive/text.directive";
 import { RendererOptions } from "./renderer-options";
 
@@ -83,6 +86,8 @@ export class MarkdownRendererService {
       mdSpace,
       mdStrong,
       mdText,
+      mdTable,
+      mdBr
     }: {
       mdHeading: HeadingDirective;
       mdBlockquote: BlockquoteDirective;
@@ -100,6 +105,8 @@ export class MarkdownRendererService {
       mdEm: EmDirective;
       mdSpace: SpaceDirective;
       mdHTML: HTMLDirective;
+      mdTable: TableDirective;
+      mdBr: BrDirective
     },
   ) {
     switch (data.type) {
@@ -205,15 +212,26 @@ export class MarkdownRendererService {
         });
         break;
       }
-      // TODO Table
-      // case : {
-      //   this.setComponent(this.mdList.viewContainerRef, ListCompoent, {
-      //     data,
-      //   })
-      //   break;
-      // }
+      case "table": {
+        this.setComponent(mdTable.viewContainerRef, TableComponent, {
+          data,
+        });
+        break;
+      }
+      case "hr": {
+        this.setComponent(mdHr.viewContainerRef, HrComponent, {
+          data,
+        });
+        break;
+      }
+      case "br": {
+        this.setComponent(mdBr.viewContainerRef, HrComponent, {
+          data,
+        });
+        break;
+      }
       default:
-        console.log("未知类型:", data.type);
+        console.error("Elements not yet supported:", data.type);
         break;
     }
   }

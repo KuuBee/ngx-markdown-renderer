@@ -5,12 +5,11 @@
  * @LastEditors: KuuBee
  * @LastEditTime: 2021-11-15 10:16:13
  */
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'md-hr',
   template: `<hr />`,
 })
 export class HrComponent {
-  @Input() rwa?: string;
 }

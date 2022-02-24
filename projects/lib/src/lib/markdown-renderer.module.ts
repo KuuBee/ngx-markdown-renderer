@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders, Injectable, Provider } from '@angular/core';
 import { BlockquoteComponent } from './component/blockquote.component';
+import { BrComponent } from './component/br.component';
 import { CodeComponent } from './component/code.component';
 import { CodespanComponent } from './component/codespan.component';
 import { DelComponent } from './component/del.component';
@@ -16,6 +17,7 @@ import { ParagraphComponent } from './component/paragraph.component';
 import { RendererComponent } from './component/renderer.component';
 import { SpaceComponent } from './component/space.component';
 import { StrongComponent } from './component/strong.component';
+import { TableComponent } from './component/table.component';
 import { TextComponent } from './component/text.component';
 import { BlockquoteDirective } from './directive/blockquote.directive';
 import { CodeDirective } from './directive/code.directive';
@@ -37,10 +39,6 @@ import { TextDirective } from './directive/text.directive';
 import { MarkdownRendererComponent } from './markdown-renderer.component';
 import { MarkdownRendererService } from './markdown-renderer.service';
 
-export class Test {
-  a?: string
-}
-
 const component = [
   MarkdownRendererComponent,
   RendererComponent,
@@ -60,6 +58,8 @@ const component = [
   EmComponent,
   SpaceComponent,
   HTMLComponent,
+  TableComponent,
+  BrComponent,
 ]
 const directive = [
   HeadingDirective,

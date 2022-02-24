@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { marked } from 'marked';
 import { BlockquoteDirective } from '../directive/blockquote.directive';
+import { BrDirective } from '../directive/br.directive';
 import { CodeDirective } from '../directive/code.directive';
 import { CodespanDirective } from '../directive/codespan.directive';
 import { DelDirective } from '../directive/del.directive';
@@ -15,6 +16,7 @@ import { ListDirective } from '../directive/list.directive';
 import { ParagraphDirective } from '../directive/paragraph.directive';
 import { SpaceDirective } from '../directive/space.directive';
 import { StrongDirective } from '../directive/strong.directive';
+import { TableDirective } from '../directive/table.directive';
 import { TextDirective } from '../directive/text.directive';
 import { MarkdownRendererService } from '../markdown-renderer.service';
 import { BlockquoteComponent } from './blockquote.component';
@@ -41,7 +43,6 @@ type Token = marked.Token;
 @Component({
   selector: 'renderer',
   templateUrl: './renderer.component.html',
-  styleUrls: ['./renderer.component.scss'],
 })
 export class RendererComponent implements OnInit {
   constructor(private _componentFactoryResolver: ComponentFactoryResolver, private mdRendererService: MarkdownRendererService) { }
@@ -69,6 +70,8 @@ export class RendererComponent implements OnInit {
   @ViewChild(EmDirective, { static: true }) mdEm!: EmDirective
   @ViewChild(SpaceDirective, { static: true }) mdSpace!: SpaceDirective
   @ViewChild(HTMLDirective, { static: true }) mdHTML!: HTMLDirective
+  @ViewChild(TableDirective, { static: true }) mdTable!: TableDirective
+  @ViewChild(BrDirective, { static: true }) mdBr!: BrDirective
 
   private _token: Token | null = null;
   ngOnInit(): void {
@@ -89,6 +92,8 @@ export class RendererComponent implements OnInit {
       mdSpace: this.mdSpace,
       mdStrong: this.mdStrong,
       mdText: this.mdText,
+      mdTable: this.mdTable,
+      mdBr: this.mdBr
     });
 
   }
