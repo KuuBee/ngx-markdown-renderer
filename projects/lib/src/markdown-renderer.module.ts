@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders, Injectable, Provider } from '@angular/core';
+import { NgModule, ModuleWithProviders, Provider } from '@angular/core';
 import { BlockquoteComponent } from './component/blockquote.component';
 import { BrComponent } from './component/br.component';
 import { CodeComponent } from './component/code.component';
@@ -88,7 +88,7 @@ const directive = [
     ...directive,
   ],
   imports: [CommonModule],
-  exports: [MarkdownRendererComponent],
+  exports: [...component, CommonModule],
 })
 export class MarkdownRendererModule {
   static forRoot(rendererOptions?: Provider): ModuleWithProviders<MarkdownRendererModule> {

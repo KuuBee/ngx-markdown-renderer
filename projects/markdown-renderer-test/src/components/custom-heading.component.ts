@@ -7,7 +7,7 @@
  */
 
 import { Component, Input } from '@angular/core';
-import { HeadingComponent } from 'ngx-markdown-renderer';
+import { HeadingComponent } from '../../../../dist/ngx-markdown-renderer';
 
 const conetnt = `<ng-container *ngIf="tokens.length; else content">
 <renderer *ngFor="let item of tokens" [token]="item"></renderer>

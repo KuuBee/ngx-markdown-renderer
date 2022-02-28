@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o --port 4203",
-    "build": "ng build markdown-renderer",
+    "build:demo": "ng build markdown-renderer-test --configuration production",
+    "build:lib": "ng build markdown-renderer --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "commit": "git add . && git-cz"
@@ -26,7 +27,7 @@
     "@angular/router": "~12.2.0",
     "@types/prismjs": "^1.16.6",
     "marked": "^4.0.1",
-    "ngx-markdown-renderer": "file:projects/lib",
+    "ngx-markdown-renderer": "file:./projects/dist/ngx-markdown-renderer",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
