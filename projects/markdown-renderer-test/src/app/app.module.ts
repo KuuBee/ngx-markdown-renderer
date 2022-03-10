@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MarkdownRendererModule, RendererOptions } from '../../../../dist/ngx-markdown-renderer';
+import { MarkdownRendererModule, RendererOptions } from '../../../lib/public-api';
 // import { MarkdownRendererModule, RendererOptions } from 'ngx-markdown-renderer';
 
 import { AppRoutingModule } from './app-routing.module';

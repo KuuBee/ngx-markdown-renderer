@@ -1,6 +1,24 @@
 {
   "name": "ngx-markdown-renderer",
   "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "KuuBee",
+    "email": "2538340934y@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KuuBee/ngx-markdown-renderer"
+  },
+  "keywords": [
+    "angular",
+    "ngx",
+    "markdown",
+    "marked",
+    "marked.js",
+    "prism",
+    "prism.js"
+  ],
   "peerDependencies": {
     "@angular/common": "^13.2.4",
     "@angular/core": "^13.2.4"
