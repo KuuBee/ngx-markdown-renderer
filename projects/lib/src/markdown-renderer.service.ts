@@ -65,6 +65,7 @@ export class MarkdownRendererService {
     return res;
   }
 
+  // TODO 需要动态添加根Renderer组件
   loadComponent(
     data: marked.Token,
     {

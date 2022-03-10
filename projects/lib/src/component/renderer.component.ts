@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { marked } from 'marked';
 import { BlockquoteDirective } from '../directive/blockquote.directive';
 import { BrDirective } from '../directive/br.directive';
@@ -19,22 +19,6 @@ import { StrongDirective } from '../directive/strong.directive';
 import { TableDirective } from '../directive/table.directive';
 import { TextDirective } from '../directive/text.directive';
 import { MarkdownRendererService } from '../markdown-renderer.service';
-import { BlockquoteComponent } from './blockquote.component';
-import { CodeComponent } from './code.component';
-import { CodespanComponent } from './codespan.component';
-import { DelComponent } from './del.component';
-import { EmComponent } from './em.component';
-import { HeadingComponent } from './heading.component';
-import { HrComponent } from './hr.component';
-import { HTMLComponent } from './html.component';
-import { ImageComponent } from './image.component';
-import { LinkComponent } from './link.component';
-import { ListItemComponent } from './list-item.component';
-import { ListCompoent } from './list.component';
-import { ParagraphComponent } from './paragraph.component';
-import { SpaceComponent } from './space.component';
-import { StrongComponent } from './strong.component';
-import { TextComponent } from './text.component';
 
 type Token = marked.Token;
 // "space" | "code" | "heading" | "table" | "hr" | "blockquote" | "list"
@@ -45,7 +29,7 @@ type Token = marked.Token;
   templateUrl: './renderer.component.html',
 })
 export class RendererComponent implements OnInit {
-  constructor(private _componentFactoryResolver: ComponentFactoryResolver, private mdRendererService: MarkdownRendererService) { }
+  constructor(private mdRendererService: MarkdownRendererService) { }
   @Input()
   get token(): Token {
     if (!this._token) throw Error('token can not be null')
@@ -97,117 +81,8 @@ export class RendererComponent implements OnInit {
     });
 
   }
-  loadComponent(data: marked.Token) {
-    switch (data.type) {
-      case "heading": {
-        this.setComponent(this.mdHeading.viewContainerRef, HeadingComponent, {
-          data,
-        })
-        break;
-      }
-      case "blockquote": {
-        this.setComponent(this.mdBlockquote.viewContainerRef, BlockquoteComponent, {
-          data,
-        })
-        break;
-      }
-      case "code": {
-        this.setComponent(this.mdCode.viewContainerRef, CodeComponent, {
-          data,
-        })
-        break;
-      }
-      case "codespan": {
-        this.setComponent(this.mdCodespan.viewContainerRef, CodespanComponent, {
-          data,
-        })
-        break;
-      }
-      case "del": {
-        this.setComponent(this.mdDel.viewContainerRef, DelComponent, {
-          data,
-        })
-        break;
-      }
-      case "hr": {
-        this.setComponent(this.mdHeading.viewContainerRef, HrComponent)
-        break;
-      }
-      case "image": {
-        this.setComponent(this.mdImage.viewContainerRef, ImageComponent, {
-          data,
-        })
-        break;
-      }
-      case "link": {
-        this.setComponent(this.mdLink.viewContainerRef, LinkComponent, {
-          data,
-        })
-        break;
-      }
-      case "list_item": {
-        this.setComponent(this.mdListItem.viewContainerRef, ListItemComponent, {
-          data,
-        })
-        break;
-      }
-      case "list": {
-        this.setComponent(this.mdList.viewContainerRef, ListCompoent, {
-          data,
-        })
-        break;
-      }
-      case "paragraph": {
-        this.setComponent(this.mdParagraph.viewContainerRef, ParagraphComponent, {
-          data,
-        })
-        break;
-      }
-      case "strong": {
-        this.setComponent(this.mdStrong.viewContainerRef, StrongComponent, {
-          data,
-        })
-        break;
-      }
-      case "text": {
-        this.setComponent(this.mdText.viewContainerRef, TextComponent, {
-          data,
-        })
-        break;
-      }
-      case "em": {
-        this.setComponent(this.mdEm.viewContainerRef, EmComponent, {
-          data,
-        })
-        break;
-      }
-      case "space": {
-        this.setComponent(this.mdSpace.viewContainerRef, SpaceComponent, {
-          data,
-        })
-        break;
-      }
-      case "html": {
-        this.setComponent(this.mdHTML.viewContainerRef, HTMLComponent, {
-          data,
-        })
-        break;
-      }
-      // TODO Table
-      // case : {
-      //   this.setComponent(this.mdList.viewContainerRef, ListCompoent, {
-      //     data,
-      //   })
-      //   break;
-      // }
-      default:
-        console.log('未知类型:', data.type);
-        break;
-    }
-  }
   setComponent(ref: ViewContainerRef, component: any, data?: Record<string, any>) {
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(component)
-    const componentRef = ref.createComponent<any>(componentFactory)
+    const componentRef = ref.createComponent<any>(component)
     if (data)
       for (const key in data) {
         if (Object.prototype.hasOwnProperty.call(data, key)) {
@@ -215,31 +90,5 @@ export class RendererComponent implements OnInit {
           componentRef.instance[key] = element;
         }
       }
-  }
-  trackByItems(_: number, item: Token) {
-    return item.raw + item.type;
-  }
-  hasTokens(item: Token): boolean {
-    const res = this.getTokens(item);
-    return !!res.length;
-  }
-  getTokens(item: Token): Token[] {
-    switch (item.type) {
-      case 'paragraph':
-        return item.tokens;
-      case 'em':
-        return item.tokens;
-      case 'text': {
-        // text 类型下有 Tag 和 Text 两种类型
-        if ((item as marked.Tokens.Tag).inLink !== undefined) return [];
-        else return (item as marked.Tokens.Text).tokens ?? [];
-      }
-      case 'heading':
-      default:
-        return [];
-    }
-  }
-  getText(item: any) {
-    return item?.text ?? '';
   }
 }
